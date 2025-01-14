@@ -9,6 +9,7 @@ independent of the parts that compose the object
 */
 
 //Example:
+import { COLORS } from "../../helpers/colors.ts";
 
 class Computer {
   public cpu: string = 'CPU not defined'
@@ -23,42 +24,70 @@ class Computer {
       RAM: ${this.ram} \n
       Storage: ${this.storage} \n
       CPU: ${this.gpu} \n
-      `)
+      `);
   }
 }
 
 class ComputerBuilder {
-  private computer: Computer
+  private computer: Computer;
 
   constructor() {
-    this.computer = new Computer()
+    this.computer = new Computer();
   }
 
-  setCPU(cpu: string) {
-    this.computer.cpu
+  // Return the instance of the class ComputerBuilder
+  setCPU(cpu: string): ComputerBuilder {
+    this.computer.cpu = cpu;
+
+    return this;
+  }
+
+  setRAM(ram: string): ComputerBuilder {
+    this.computer.ram = ram
+
+    return this;
+  }
+
+  setStorage(storage: string): ComputerBuilder {
+    this.computer.storage = storage
 
     return this
   }
 
-  setRAM(ram: string) {
-    this.computer.ram
+  setGPU(gpu: string): ComputerBuilder {
+    this.computer.gpu = gpu;
 
-    return this
+    return this;
   }
 
-  setStorage(storage: string) {
-    this.computer.storage
-
-    return this
-  }
-
-  setGPU(gpu: string) {
-    this.computer.gpu
-
-    return this
-  }
-
+  //Method for access the property computer of type private
   build() {
-    return this.computer
+    return this.computer;
   }
 }
+
+
+function main() {
+  const basicComputer: Computer = new ComputerBuilder()
+    .setCPU("Intel i5 10th gen")
+    .setRAM("8GB")
+    .setStorage("256GB")
+    .build()
+
+  console.log("%cBasic Computer: ", COLORS.purple);
+  basicComputer.displayConfiguration();
+
+
+  const gamingComputer: Computer = new ComputerBuilder()
+    .setCPU("Intel i9 13900K")
+    .setRAM("32GB")
+    .setStorage("1TB")
+    .setGPU("NVIDIA RTX 3090 Ti")
+    .build()
+
+  console.log("%cGaming Computer: ", COLORS.green);
+  gamingComputer.displayConfiguration();
+
+}
+
+main();
