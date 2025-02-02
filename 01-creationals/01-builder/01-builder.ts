@@ -1,6 +1,6 @@
 /*
 Builder Pattern
-Creational design pattern used to construct complex objects stepe bv step
+Creational design pattern used to construct complex objects stepe by step
 
 When to use:
 It is util when we need to create an complex object 
