@@ -29,7 +29,6 @@ class BeefHamburger implements Hamburger {
 }
 
 class BeanHamburger implements Hamburger {
-
   prepare(): void {
     console.log('Preparing hamburger %cBean', COLORS.green)
   }
@@ -37,7 +36,7 @@ class BeanHamburger implements Hamburger {
 }
 
 abstract class Restaurant {
-  abstract createHamburger(): Hamburger;
+  protected abstract createHamburger(): Hamburger;
 
   orderHamburger(): void {
     const hamburger = this.createHamburger();
